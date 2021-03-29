@@ -1,0 +1,14 @@
+{
+  "name": "clustrserver",
+  "version": "1.0.0",
+  "description": "mobile apps final project server",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Enrique Goudet",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
