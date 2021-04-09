@@ -1,18 +1,11 @@
+const environment = process.env.ENVIRONMENT || 'development'
+const config = require('../../db/dbConfig')[environment];
+const knex = require('knex')(config);
 
-const knex = require('knex')({
-    client: 'pg',
-    // connection: process.env.DATABASE_URL
-    connection: {
-      host : process.env.DB_HOST || '127.0.0.1',
-      user : process.env.DB_USER || 'enriquegoudet',
-      password : process.env.DB_PASSWORD || '',
-      database : process.env.DATABASE || 'MobileAppsCluster'
-    }
-})
 
 module.exports = async (req, res) => {
 
-      const {
+    const {
         name,
         email,
         google_id,
@@ -30,7 +23,7 @@ module.exports = async (req, res) => {
       if (exists.length > 0) return res.send('user exists')
     } catch (e) {
       return res.status(500).json({
-        error: "db connection invalid"
+        "db_error": e,
       })
     }
 
@@ -44,7 +37,7 @@ module.exports = async (req, res) => {
       res.status(200).json({'success': 'new user successfuly registered'});
 
     } catch (e) {
-      console.log(e)
-      res.status(500).json({error: e})
+      console.log('error:', e)
+      return res.status(500).json({ "db_error": e })
     }
 }

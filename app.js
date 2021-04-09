@@ -1,18 +1,21 @@
+// Inits
 const express = require('express');
-const app = express();
-const port = 3000;
 const bodyParser = require('body-parser');
 
+const app = express();
+const port = 3000;
 
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
+
+// Endpoints Begin
 app.get('/', (req, res) => {
-  res.send('Hello World!')
+  res.send('Sup g!')
 })
 
-const create_db = require('./routes/create_db/db');
-app.get('/create_db', create_db);
+const createDb = require('./routes/createDb/db');
+app.get('/create_db', createDb);
 
 const auth = require('./routes/auth/auth');
 app.post('/auth', auth);
