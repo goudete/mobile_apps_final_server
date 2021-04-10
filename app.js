@@ -14,14 +14,36 @@ app.get('/', (req, res) => {
   res.send('Sup g!')
 })
 
-const createDb = require('./routes/createDb/db');
-app.get('/create_db', createDb);
+const createDb = require('./routes/createDb/db')
+app.get('/create_db', createDb)
 
-const auth = require('./routes/auth/auth');
-app.post('/auth', auth);
 
-const createLocation = require('./routes/locations/createLocation');
-app.get('/location', createLocation);
+// Auth routes
+const auth = require('./routes/auth/auth')
+app.post('/auth', auth)
+
+
+// Location routes
+const createLocation = require('./routes/locations/createLocation')
+app.post('/createLocation', createLocation);
+
+const getAllLocations = require('./routes/locations/getAllLocations')
+app.get('/getAllLocations', getAllLocations)
+
+const getLocation = require('./routes/locations/getLocation')
+app.get('/getLocation/:id', getLocation)
+
+
+// Follower routes
+const createConnection = require('./routes/follow/createConnection');
+app.post('/createConnection', createConnection)
+
+const getConnection = require('./routes/follow/getConnection');
+app.get('/getConnection/:follower_id', getConnection);
+
+const getAllUsers = require('./routes/follow/getAllUsers');
+app.get('/getAllUsers', getAllUsers)
+
 
 app.listen(port, () => {
   console.log(`chillin at http://localhost:${port}`)
