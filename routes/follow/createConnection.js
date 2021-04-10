@@ -16,8 +16,9 @@ module.exports = async (req, res) => {
 
     // check if connection alreay exists
     try {
-        const connection = await knex.select('id').from('friend_connections').where('follower', follower);
-        const existing = connection.find((c) => c.followee === followee);
+        const connection = await knex.select().from('friend_connections').where('follower', follower);
+        console.log('connection:', connection)
+        const existing = connection.find((c) => c.followee == followee);
         if (existing) return res.send('connection already exists');
     } catch (e) {
             console.log('error:', e)

@@ -38,8 +38,11 @@ app.get('/getLocation/:id', getLocation)
 const createConnection = require('./routes/follow/createConnection');
 app.post('/createConnection', createConnection)
 
-const getConnection = require('./routes/follow/getConnection');
-app.get('/getConnection/:follower_id', getConnection);
+const getFollowers = require('./routes/follow/getFollowers');
+app.get('/getFollowers/:followee_id', getFollowers);
+
+const getFollowees = require('./routes/follow/getFollowees');
+app.get('/getFollowees/:follower_id', getFollowees);
 
 const getAllUsers = require('./routes/follow/getAllUsers');
 app.get('/getAllUsers', getAllUsers)
