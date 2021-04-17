@@ -10,7 +10,7 @@ module.exports = async (req, res) => {
     } = req.params;
 
     if (!followee_id) {
-        return res.json({'error': 'Invalid follower id, try again'});
+        return res.status(400).json({'message': 'Invalid follower id, try again'});
     }
 
     try {

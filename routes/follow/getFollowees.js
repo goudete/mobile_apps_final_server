@@ -10,7 +10,7 @@ module.exports = async (req, res) => {
     } = req.params;
 
     if (!follower_id) {
-        return res.json({'error': 'Invalid follower id, try again'});
+        return res.status(400).json({'message': 'Invalid follower id, try again'});
     }
 
     try {
@@ -24,7 +24,7 @@ module.exports = async (req, res) => {
         followees.followeeObjects = followeeObjects
         followees.followeeCount = followeeObjects.length
 
-        return res.json({ followees })
+        return res.status(200).json({ followees })
     } catch (e) {
         console.log('error:', e)
         return res.status(500).json({

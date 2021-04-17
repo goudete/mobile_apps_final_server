@@ -14,14 +14,14 @@ module.exports = async (req, res) => {
 
    // validate payload
    if (!user_id || !name || !google_place_id || !description || !rating ) {
-       return res.send('Invalid payload, try again');
+       return res.status(400).json({'message':'Invalid payload, try again'});
     //    throw Error("invalid payload")
    }
 
    // check if row already exists
    try {
     const existingLocation = await knex.select('id').from('locations').where('user_id', user_id).where('google_place_id', google_place_id);
-    if (existingLocation.length > 0) return res.send('location already exists');
+    if (existingLocation.length > 0) return res.json({'message':'location already exists'});
     } catch (e) {
         console.log('error:', e)
         return res.status(500).json({

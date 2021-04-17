@@ -13,14 +13,14 @@ module.exports = async (req, res) => {
 
     // validate payload
     if (!name || !email || !google_id) {
-      return res.send("empty payload");
+      return res.status(400).json({'message':'empty payload'});
     }
 
     // see if user exists
     try {
       const exists = await knex.select('id').from('user').where('email', email);
       console.log(exists)
-      if (exists.length > 0) return res.send('user exists')
+      if (exists.length > 0) return res.json({'message': 'user exists'});
     } catch (e) {
       return res.status(500).json({
         "db_error": e,

@@ -11,7 +11,7 @@ module.exports = async (req, res) => {
 
     // Validate payload
     if (!followee || !follower) {
-        return res.send('Invalid payload, try again');
+        return res.status(400).json({'message':'Invalid payload, try again'});
     }
 
     // check if connection alreay exists
@@ -19,7 +19,7 @@ module.exports = async (req, res) => {
         const connection = await knex.select().from('friend_connections').where('follower', follower);
         console.log('connection:', connection)
         const existing = connection.find((c) => c.followee == followee);
-        if (existing) return res.send('connection already exists');
+        if (existing) return res.json({'message':'connection already exists'});
     } catch (e) {
             console.log('error:', e)
             return res.status(500).json({
@@ -36,6 +36,6 @@ module.exports = async (req, res) => {
             res.status(201).json({'success': 'connection created successfuly'})
     } catch (e) {
             console.log('error:', e)
-            return res.status(500).json({ "db_error": e })
+            return res.status(500).json({ "message": e })
     }
 }

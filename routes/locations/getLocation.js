@@ -10,12 +10,12 @@ module.exports = async (req, res) => {
     } = req.params;
 
    if (!id) {
-       return res.send('Invalid id, try again');
+       return res.status(400).json({'message':'Invalid id, try again'});
    }
 
    try {
        const location = await knex.select().from('locations').where('id', id);
-       return res.json({ location })
+       return res.status(200).json({ location })
    } catch (e) {
         console.log('error:', e)
         return res.status(500).json({
