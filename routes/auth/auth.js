@@ -19,11 +19,10 @@ module.exports = async (req, res) => {
     // see if user exists
     try {
       const exists = await knex.select('id').from('cluster_users').where('email', email);
-      console.log(exists)
-      if (exists.length > 0) return res.json({'message': 'user exists'});
+      if (exists.length > 0) return res.json({ body: exists[0]});
     } catch (e) {
       return res.status(500).json({
-        "db_error": e,
+        error: e,
       })
     }
 
@@ -34,10 +33,11 @@ module.exports = async (req, res) => {
         email: email,
         google_auth_id: google_id
       })
-      res.status(200).json({'success': 'new user successfuly registered'});
+
+      const user_id = await knex.select('id').from('cluster_users').where('email', email);
+      res.status(200).json({ body: user_id[0]});
 
     } catch (e) {
-      console.log('error:', e)
-      return res.status(500).json({ "db_error": e })
+      return res.status(500).json({ error: e })
     }
 }

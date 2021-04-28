@@ -30,8 +30,8 @@ app.post('/createLocation', createLocation);
 const getAllLocations = require('./routes/locations/getAllLocations')
 app.get('/getAllLocations', getAllLocations)
 
-const getLocation = require('./routes/locations/getLocation')
-app.get('/getLocationByUser/:id', getLocation)
+const getLocationByUser = require('./routes/locations/getLocation')
+app.get('/getLocationByUser/:id', getLocationByUser)
 
 
 // Follower routes
