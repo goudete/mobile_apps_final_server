@@ -3,7 +3,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 
 const app = express();
-const port = 3000;
+const port = 80;
 
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
@@ -31,7 +31,7 @@ const getAllLocations = require('./routes/locations/getAllLocations')
 app.get('/getAllLocations', getAllLocations)
 
 const getLocation = require('./routes/locations/getLocation')
-app.get('/getLocation/:id', getLocation)
+app.get('/getLocationByUser/:id', getLocation)
 
 
 // Follower routes

@@ -18,7 +18,7 @@ module.exports = async (req, res) => {
 
     // see if user exists
     try {
-      const exists = await knex.select('id').from('user').where('email', email);
+      const exists = await knex.select('id').from('cluster_users').where('email', email);
       console.log(exists)
       if (exists.length > 0) return res.json({'message': 'user exists'});
     } catch (e) {
@@ -29,7 +29,7 @@ module.exports = async (req, res) => {
 
     // user doesn't exist, enter into db
     try {
-      await knex('user').insert({
+      await knex('cluster_users').insert({
         username: name,
         email: email,
         google_auth_id: google_id
