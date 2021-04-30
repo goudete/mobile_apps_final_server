@@ -15,7 +15,7 @@ module.exports = async (req, res) => {
 
    try {
        const location = await knex.select().from('locations').where('user_id', id);
-       return res.status(200).json({ location })
+       return res.status(200).json({ locations: location })
    } catch (e) {
         console.log('error:', e)
         return res.status(500).json({
