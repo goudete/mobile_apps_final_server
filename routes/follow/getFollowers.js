@@ -17,7 +17,7 @@ module.exports = async (req, res) => {
         let followers = {};
 
         const followersDb = await knex.select('follower').from('friend_connections').where('followee', followee_id);
-        const users = await knex.select().from('user');
+        const users = await knex.select().from('cluster_users');
 
         const followerObjs = followersDb.map((f) => users.find((u) => u.id === f.follower))
 

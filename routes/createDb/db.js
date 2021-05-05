@@ -2,7 +2,7 @@
 module.exports = (req, res) => {
 
     res.json({'evening': 'big fella'})
-    // knex.schema.createTable('user', (table) => {
+    // knex.schema.createTable('cluster_users', (table) => {
     //   table.increments('id')
     //   table.string('username')
     //   table.string('email')
@@ -26,6 +26,6 @@ module.exports = (req, res) => {
     //   table.integer('follower').references('id').inTable('user').notNull().onDelete('cascade');
     //   table.integer('followee').references('id').inTable('user').notNull().onDelete('cascade');
     // })
-    // .then(() => res.json({'success': 'table'}))
+    // .then(() => res.json({'success': 'table'}))s
   
   };
