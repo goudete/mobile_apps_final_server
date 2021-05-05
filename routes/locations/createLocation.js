@@ -20,7 +20,7 @@ module.exports = async (req, res) => {
 
    // check if row already exists
    try {
-    const existingLocation = await knex.select('id').from('locations').where('user_id', user_id).where('google_place_id', google_place_id);
+    const existingLocation = await knex.select('id').from('locations').where('user_id', user_id).where('name', name);
     if (existingLocation.length > 0) return res.json({'message':'location already exists'});
     } catch (e) {
         console.log('error:', e)

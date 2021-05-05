@@ -45,7 +45,7 @@ const getFollowees = require('./routes/follow/getFollowees');
 app.get('/getFollowees/:follower_id', getFollowees);
 
 const getAllUsers = require('./routes/follow/getAllUsers');
-app.get('/getAllUsers', getAllUsers)
+app.get('/getAllUsers/:user_id', getAllUsers)
 
 
 app.listen(port, () => {
