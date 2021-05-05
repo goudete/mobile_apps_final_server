@@ -1,7 +1,6 @@
 
 module.exports = (req, res) => {
 
-    res.json({'evening': 'big fella'})
     // knex.schema.createTable('cluster_users', (table) => {
     //   table.increments('id')
     //   table.string('username')
