@@ -11,7 +11,7 @@ app.use(bodyParser.json())
 
 // Endpoints Begin
 app.get('/', (req, res) => {
-  res.send('Sup g!')
+  res.send({"hello": "world"})
 })
 
 const createDb = require('./routes/createDb/db')
