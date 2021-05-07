@@ -26,21 +26,31 @@ module.exports = {
     },
     production: {
         client: 'pg',
-        connection: {
-            host : process.env.DB_HOST,
-            user : process.env.DB_USER,
-            password : process.env.DB_PASS,
-            database: process.env.DATABASE_URL
-        },
-        ssl: {
-            rejectUnauthorized: false
-        },
-        pool: {
-            min: 2,
-            max: 10
-        },
+        connection: process.env.DATABASE_URL,
         migrations: {
-        tableName: 'knex_migrations'
-        }
-    }
+            directory: __dirname + '/db/migrations',
+        },
+        seeds: {
+            directory: __dirname + '/db/seeds/production',
+        },
+    },
+    // production: {
+    //     client: 'pg',
+    //     connection: {
+    //         host : process.env.DB_HOST,
+    //         user : process.env.DB_USER,
+    //         password : process.env.DB_PASS,
+    //         database: process.env.DATABASE_URL
+    //     },
+    //     ssl: {
+    //         rejectUnauthorized: false
+    //     },
+    //     pool: {
+    //         min: 2,
+    //         max: 10
+    //     },
+    //     migrations: {
+    //     tableName: 'knex_migrations'
+    //     }
+    // }
 };
