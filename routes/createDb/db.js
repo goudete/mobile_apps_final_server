@@ -4,6 +4,7 @@ const knex = require('knex')(config);
 
 module.exports = (req, res) => {
 
+  try {
     knex.schema.createTable('cluster_users', (table) => {
       table.increments('id')
       table.string('username')
@@ -29,5 +30,8 @@ module.exports = (req, res) => {
       table.integer('followee').references('id').inTable('cluster_users').notNull().onDelete('cascade');
     })
     .then(() => res.json({'success': 'table'}))
+  } catch (error) {
+    console.log(error);
+  }
   
-  };
+};
